@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Diet-Gene Interaction Analyzer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+header{
+    padding:30px;
+    text-align:center;
+}
+section{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+.card{
+    background: rgba(255,255,255,0.1);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(0,255,255,0.3);
+}
+button{
+    background:#00f2fe;
+    border:none;
+    padding:10px 20px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+input,select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:none;
+}
+.result{
+    background:#00000055;
+    padding:15px;
+    border-radius:10px;
+    margin-top:10px;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🧬 Personalized Diet–Gene Interaction Analyzer</h1>
+<p>AI Powered Gene-Based Nutrition Platform</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>👤 User Registration</h2>
+<input type="text" id="name" placeholder="Enter your name">
+<input type="number" id="age" placeholder="Age">
+<select id="gene">
+<option value="">Select Gene Condition</option>
+<option value="lactose">Lactose Intolerance</option>
+<option value="diabetes">Diabetes Risk</option>
+<option value="iron">Low Iron Absorption</option>
+<option value="obesity">Obesity Prone Gene</option>
+</select>
+<button onclick="analyze()">Analyze My Diet</button>
+</div>
+
+<div class="card">
+<h2>🧠 AI Analysis Result</h2>
+<div id="output" class="result">Waiting for data...</div>
+</div>
+
+<div class="card">
+<h2>🍱 AI Meal Generator</h2>
+<button onclick="generateMeal()">Generate Meal Plan</button>
+<div id="meal" class="result"></div>
+</div>
+
+<div class="card">
+<h2>🚨 Emergency Food Alert</h2>
+<div id="alert" class="result">No alerts</div>
+</div>
+
+<div class="card">
+<h2>🎙 Voice Diet Assistant</h2>
+<button onclick="speak()">Explain My Diet</button>
+</div>
+
+<div class="card">
+<h2>🌍 Community Gene Match</h2>
+<div class="result">
+You match with 124 people having similar gene patterns.
+Recommended community diet & lifestyle shared.
+</div>
+</div>
+
+</section>
+
+<footer>
+© 2026 Diet-Gene AI | Hackathon Innovation Project
+</footer>
+
+<script>
+function analyze(){
+    let gene = document.getElementById("gene").value;
+    let output = "";
+
+    if(gene==="lactose"){
+        output="⚠ Avoid milk products. Best foods: Almond milk, oats, fruits.";
+        document.getElementById("alert").innerText="Emergency Alert: Avoid Dairy!";
+    }
+    else if(gene==="diabetes"){
+        output="⚠ Control sugar intake. Best foods: Millets, vegetables, nuts.";
+        document.getElementById("alert").innerText="Emergency Alert: Sugar spike risk!";
+    }
+    else if(gene==="iron"){
+        output="⚠ Low iron absorption detected. Eat spinach, dates, legumes.";
+        document.getElementById("alert").innerText="Emergency Alert: Iron deficiency risk!";
+    }
+    else if(gene==="obesity"){
+        output="⚠ Slow metabolism gene. Eat high protein, low carb meals.";
+        document.getElementById("alert").innerText="Emergency Alert: Weight gain risk!";
+    }
+    else{
+        output="Please select gene condition.";
+    }
+
+    document.getElementById("output").innerText = output;
+}
+
+function generateMeal(){
+    document.getElementById("meal").innerText =
+    "🍽 Breakfast: Oats + Fruits\n🍛 Lunch: Brown rice + Veg curry\n🥗 Dinner: Salad + Protein";
+}
+
+function speak(){
+    let text = document.getElementById("output").innerText;
+    let speech = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
